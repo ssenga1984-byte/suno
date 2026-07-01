@@ -147,3 +147,13 @@ CMSログイン後、次を確認する。
 - CMSから対象コンテンツを読み書きできる。
 - GitHub commitとNetlify deployまで確認できる。
 - 秘密情報がリポジトリ・チャット・計画書に残っていない。
+
+## 2026-07-01 追加実施結果
+
+- `satoshi19840417/suno` への collaborator 招待は GitHub 側で `User could not be added` / `You can't perform that action at this time.` となり失敗した。
+- 代替として `ssenga1984-byte/suno` を新規作成した。
+- `public/admin/config.yml` の Decap CMS backend repo を `ssenga1984-byte/suno` に変更した。
+- `ssenga1984-byte` の GitHub SSH keys に `JUON CMS deploy key 20260701` を追加した。
+- `juon-site` のクリーンコピーを `ssenga1984-byte/suno` の `main` に初期投入した。
+- Netlify production deploy を実行し、公開済み `https://juon-site-preview-20260516.netlify.app/admin/config.yml` が `repo: ssenga1984-byte/suno` を返すことを確認した。
+- in-app browser では Decap CMS のポップアップ復帰制約により管理画面内への復帰までは確認できていないが、OAuth callback は `Authorized` まで到達することを確認した。
