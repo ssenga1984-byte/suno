@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=864, initial-scale=1" />
+    <title>参加者の声 PDF反映モック</title>
+    <style>
+      :root {
+        --deep: #123b2a;
+        --leaf: #4f7d5a;
+        --moss: #a8c66c;
+        --paper: #f6f3ea;
+        --linen: #fbfaf5;
+        --ink: #1e2722;
+        --muted: #657469;
+        --gold: #b79a5b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 864px;
+        height: 1461px;
+        margin: 0;
+        overflow: hidden;
+        color: var(--ink);
+        background: var(--linen);
+        font-family: "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+      }
+
+      .sheet {
+        position: relative;
+        width: 864px;
+        height: 1461px;
+        background:
+          radial-gradient(circle at 80% 12%, rgba(168, 198, 108, 0.22), transparent 28%),
+          linear-gradient(180deg, #fbfaf5 0%, #f6f3ea 64%, #fbfaf5 100%);
+      }
+
+      h1 {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        max-width: 470px;
+        font-family: "Noto Serif JP", "Yu Mincho", serif;
+        font-size: 43px;
+        font-weight: 500;
+        line-height: 1.28;
+        letter-spacing: 0;
+      }
+
+      section {
+        padding: 0 54px;
+      }
+
+      .featured {
+        display: grid;
+        grid-template-columns: 270px 1fr;
+        gap: 42px;
+        padding-top: 42px;
+      }
+
+      .portrait-panel {
+        min-height: 286px;
+        padding: 22px 22px;
+        background: #eef2e5;
+        border: 1px solid rgba(18, 59, 42, 0.12);
+      }
+
+      .portrait {
+        display: block;
+        width: 182px;
+        height: 182px;
+        margin: 0 auto;
+      }
+
+      .portrait-note {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.8;
+        text-align: center;
+      }
+
+      .eyebrow {
+        margin: 18px 0 12px;
+        color: var(--leaf);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+      }
+
+      .story h2 {
+        margin: 0;
+        color: var(--deep);
+        font-family: "Noto Serif JP", "Yu Mincho", serif;
+        font-size: 29px;
+        font-weight: 500;
+        line-height: 1.55;
+      }
+
+      .tag {
+        display: inline-block;
+        margin: 14px 0 12px;
+        padding: 7px 13px;
+        color: var(--deep);
+        background: #fff;
+        border: 1px solid rgba(18, 59, 42, 0.18);
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .story p,
+      .voice-card p,
+      .after p,
+      .source-note p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      .voices-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .voice-card {
+        min-height: 248px;
+        padding: 15px 15px 15px;
+        background: #fff;
+        border: 1px solid rgba(18, 59, 42, 0.12);
+        border-radius: 6px;
+        box-shadow: 0 16px 36px rgba(25, 49, 31, 0.07);
+      }
+
+      .voice-card .mini {
+        width: 66px;
+        height: 66px;
+        margin-bottom: 10px;
+      }
+
+      .quote {
+        color: var(--leaf);
+        font-family: "Noto Serif JP", "Yu Mincho", serif;
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      .voice-card h3 {
+        margin: 6px 0 10px;
+        color: var(--deep);
+        font-size: 18px;
+        line-height: 1.55;
+      }
+
+      .voice-card .meta {
+        margin-top: 14px;
+        color: var(--deep);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .after {
+        padding-top: 42px;
+        text-align: center;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        color: var(--deep);
+        font-family: "Noto Serif JP", "Yu Mincho", serif;
+        font-size: 28px;
+        font-weight: 500;
+      }
+
+      .section-title::before,
+      .section-title::after {
+        content: "";
+        width: 84px;
+        height: 1px;
+        background: rgba(18, 59, 42, 0.36);
+      }
+
+      .after-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        margin-top: 28px;
+      }
+
+      .after-item {
+        min-height: 116px;
+        padding: 0 28px;
+        border-right: 1px solid rgba(18, 59, 42, 0.2);
+      }
+
+      .after-item:last-child {
+        border-right: 0;
+      }
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 12px;
+      }
+
+      .after h3 {
+        margin: 0 0 12px;
+        color: var(--deep);
+        font-size: 17px;
+      }
+
+      .story-links {
+        padding-top: 30px;
+      }
+
+      .link-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .link-card {
+        position: relative;
+        height: 118px;
+        padding: 34px 16px 12px;
+        overflow: hidden;
+        color: #fff;
+        border-radius: 5px;
+        background:
+          linear-gradient(180deg, rgba(18, 59, 42, 0.12), rgba(18, 59, 42, 0.88)),
+          linear-gradient(135deg, #34583e, #8aaa60);
+      }
+
+      .link-card:nth-child(2) {
+        background:
+          linear-gradient(180deg, rgba(18, 59, 42, 0.08), rgba(18, 59, 42, 0.84)),
+          linear-gradient(135deg, #6a7d43, #c9b46b);
+      }
+
+      .link-card:nth-child(3) {
+        background:
+          linear-gradient(180deg, rgba(18, 59, 42, 0.08), rgba(18, 59, 42, 0.84)),
+          linear-gradient(135deg, #40503d, #a2b982);
+      }
+
+      .link-card h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .link-card p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .source-note {
+        margin: 22px 54px 0;
+        padding: 14px 22px;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(18, 59, 42, 0.13);
+        border-radius: 6px;
+      }
+
+      .source-note-inner {
+        display: grid;
+        grid-template-columns: 1fr 156px;
+        gap: 22px;
+        align-items: center;
+      }
+
+      .source-note h2 {
+        margin: 0 0 6px;
+        color: var(--deep);
+        font-size: 16px;
+      }
+
+      .source-cta {
+        display: grid;
+        min-height: 48px;
+        place-items: center;
+        color: #fff;
+        background: var(--deep);
+        border-radius: 5px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .cta {
+        margin: 26px 54px 0;
+        padding: 28px 36px;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        background:
+          linear-gradient(rgba(18, 59, 42, 0.82), rgba(18, 59, 42, 0.86)),
+          linear-gradient(135deg, #315b3b, #8aa75b);
+      }
+
+      .cta h2 {
+        margin: 0;
+        font-family: "Noto Serif JP", "Yu Mincho", serif;
+        font-size: 28px;
+        font-weight: 500;
+      }
+
+      .cta .button {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 13px 54px;
+        color: var(--deep);
+        background: #fff;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      footer {
+        position: absolute;
+        inset: auto 0 0;
+        height: 92px;
+        display: flex;
+        align-items: center;
+        padding: 0 54px;
+        color: rgba(255, 255, 255, 0.86);
+        background: var(--deep);
+      }
+
+      footer strong {
+        display: block;
+        margin-bottom: 8px;
+        color: #fff;
+        font-family: "Noto Serif JP", "Yu Mincho", serif;
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      footer span {
+        margin-left: auto;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sheet">
+      <main>
+        <section class="featured">
+          <div class="portrait-panel">
+            <svg class="portrait" viewBox="0 0 220 220" aria-label="大学生参加者のイメージイラスト">
+              <circle cx="110" cy="110" r="104" fill="#fbfaf5" stroke="#a8c66c" stroke-width="3" />
+              <path d="M62 166c13-28 82-28 96 0" fill="none" stroke="#4f7d5a" stroke-width="8" stroke-linecap="round" />
+              <circle cx="110" cy="88" r="38" fill="none" stroke="#123b2a" stroke-width="7" />
+              <path d="M72 82c10-33 65-42 82 2" fill="none" stroke="#123b2a" stroke-width="7" stroke-linecap="round" />
+              <path d="M92 92h1M127 92h1" stroke="#123b2a" stroke-width="7" stroke-linecap="round" />
+              <path d="M94 116c10 10 22 10 33 0" fill="none" stroke="#4f7d5a" stroke-width="5" stroke-linecap="round" />
+              <path d="M70 178c27 17 55 18 84 0" fill="none" stroke="#b79a5b" stroke-width="5" stroke-linecap="round" />
+            </svg>
+            <div class="portrait-note">PDF写真は参照していない、匿名属性にもとづくイメージイラストです。</div>
+          </div>
+          <div class="story">
+            <div class="eyebrow">FEATURED STORY</div>
+            <h2>一人で参加した週末が、地域とつながる入口になった。</h2>
+            <div class="tag">大学生・20代 / 森林の楽校 参加</div>
+            <p>
+              最初は森の作業に「大変そう」という印象がありました。けれど、現地で木を見て、道具を持ち、地域の方の話を聞くうちに、森を守る仕事が暮らしとつながっていることが分かりました。次は田畑や地域活動にも参加してみたいです。
+            </p>
+          </div>
+        </section>
+
+        <section class="voices-grid">
+          <article class="voice-card">
+            <svg class="mini" viewBox="0 0 90 90"><circle cx="45" cy="45" r="42" fill="#eef2e5"/><circle cx="45" cy="34" r="16" fill="none" stroke="#123b2a" stroke-width="4"/><path d="M22 72c7-22 39-22 46 0" fill="none" stroke="#4f7d5a" stroke-width="5" stroke-linecap="round"/><path d="M31 34c4-15 25-18 31 0" fill="none" stroke="#123b2a" stroke-width="4" stroke-linecap="round"/></svg>
+            <div class="quote">“</div>
+            <h3>森を見る目が変わった。</h3>
+            <p>手入れの大切さを知り、作業の意味まで持ち帰れました。</p>
+            <div class="meta">森林の楽校 / 大学生・20代</div>
+          </article>
+          <article class="voice-card">
+            <svg class="mini" viewBox="0 0 90 90"><circle cx="45" cy="45" r="42" fill="#f4f0df"/><circle cx="45" cy="34" r="16" fill="none" stroke="#123b2a" stroke-width="4"/><path d="M23 72c8-21 37-21 44 0" fill="none" stroke="#4f7d5a" stroke-width="5" stroke-linecap="round"/><path d="M28 32c10-11 26-11 34 0" fill="none" stroke="#b79a5b" stroke-width="4" stroke-linecap="round"/></svg>
+            <div class="quote">“</div>
+            <h3>食べ物の背景が近くなった。</h3>
+            <p>収穫や手入れを通じて、地域の空気まで感じられました。</p>
+            <div class="meta">田畑の楽校 / 社会人・20代</div>
+          </article>
+          <article class="voice-card">
+            <svg class="mini" viewBox="0 0 90 90"><circle cx="45" cy="45" r="42" fill="#edf3e8"/><circle cx="45" cy="34" r="16" fill="none" stroke="#123b2a" stroke-width="4"/><path d="M22 72c7-22 39-22 46 0" fill="none" stroke="#4f7d5a" stroke-width="5" stroke-linecap="round"/><path d="M26 28h38" stroke="#123b2a" stroke-width="4" stroke-linecap="round"/><path d="M31 24h28" stroke="#123b2a" stroke-width="4" stroke-linecap="round"/></svg>
+            <div class="quote">“</div>
+            <h3>体を使うから実感できた。</h3>
+            <p>竹林整備の後、手を入れる意味が自分ごとになりました。</p>
+            <div class="meta">竹林整備 / 初参加・社会人</div>
+          </article>
+          <article class="voice-card">
+            <svg class="mini" viewBox="0 0 90 90"><circle cx="45" cy="45" r="42" fill="#f0f4e2"/><circle cx="36" cy="35" r="13" fill="none" stroke="#123b2a" stroke-width="4"/><circle cx="55" cy="37" r="13" fill="none" stroke="#4f7d5a" stroke-width="4"/><path d="M18 72c8-20 30-20 38 0M37 72c8-19 28-19 36 0" fill="none" stroke="#b79a5b" stroke-width="4" stroke-linecap="round"/></svg>
+            <div class="quote">“</div>
+            <h3>地域を歩く時間が残った。</h3>
+            <p>水場や民家を訪ね、暮らしの風景をゆっくり知れました。</p>
+            <div class="meta">地域活動 / リピーター</div>
+          </article>
+        </section>
+
+        <section class="after">
+          <h2 class="section-title">参加後に変わったこと</h2>
+          <div class="after-grid">
+            <div class="after-item">
+              <svg class="icon" viewBox="0 0 64 64"><g fill="none" stroke="#123b2a" stroke-width="3" stroke-linecap="round"><circle cx="20" cy="22" r="9"/><circle cx="44" cy="22" r="9"/><path d="M8 52c3-14 21-14 24 0M32 52c3-14 21-14 24 0"/></g></svg>
+              <h3>また参加したい</h3>
+              <p>もう一度現地へ行き、別の活動にも関わりたいという声が集まっています。</p>
+            </div>
+            <div class="after-item">
+              <svg class="icon" viewBox="0 0 64 64"><g fill="none" stroke="#123b2a" stroke-width="3" stroke-linecap="round"><circle cx="32" cy="32" r="21"/><path d="M12 32h40M32 11c8 9 8 33 0 42M32 11c-8 9-8 33 0 42"/><path d="M42 43c5-1 9-5 11-10"/></g></svg>
+              <h3>地域に関心が広がった</h3>
+              <p>作業だけでなく、食や暮らし、地域の課題まで見えるきっかけになります。</p>
+            </div>
+            <div class="after-item">
+              <svg class="icon" viewBox="0 0 64 64"><g fill="none" stroke="#123b2a" stroke-width="3" stroke-linecap="round"><path d="M12 18h40v28H27L16 56V46h-4z"/><path d="M23 29h18M23 38h12"/></g></svg>
+              <h3>学びを人に話したい</h3>
+              <p>体験で得た気づきを、家族や友人に伝えたいという声もあります。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story-links">
+          <h2 class="section-title">活動別のストーリー</h2>
+          <div class="link-grid">
+            <div class="link-card"><h3>森林の楽校</h3><p>森づくりの現場で、自然と向き合い仲間と学び合う体験。</p></div>
+            <div class="link-card"><h3>田畑の楽校</h3><p>土に触れ、食や暮らしを支える地域の営みを体感する。</p></div>
+            <div class="link-card"><h3>地域の活動</h3><p>散策や交流を通じて、人と地域のつながりを深める。</p></div>
+          </div>
+        </section>
+
+        <div class="source-note">
+          <div class="source-note-inner">
+            <div>
+              <h2>PDF反映メモ</h2>
+              <p>2026年5月号の活動レポート、活動日誌、イベントだよりをもとに、活動名と参加後の気づきを匿名化して再構成しています。似顔絵はPDF写真を参照していないイメージイラストです。</p>
+            </div>
+            <div class="source-cta">活動一覧へ</div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <div><strong>JUON NETWORK</strong>認定NPO法人 JUON NETWORK（樹恩ネットワーク）</div>
+        <span>© JUON NETWORK</span>
+      </footer>
+    </div>
+  </body>
+</html>

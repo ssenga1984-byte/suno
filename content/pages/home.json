@@ -1,0 +1,19 @@
+{
+  "title": "JUON NETWORK",
+  "metaTitle": "JUON NETWORK | 里山と人をつなぐ",
+  "metaDescription": "森づくり、農作業、地域交流。週末から参加できるJUON NETWORKの自然体験プログラムを紹介します。",
+  "banner": {
+    "eyebrow": "認定NPO法人 JUON NETWORK",
+    "title": "この週末\n森に出かけよう",
+    "lead": "一人でも、友だちとでも。気になった瞬間が最初の一歩。\n活動選びから週末の日程まで、ここで全部わかる。",
+    "primaryCtaLabel": "どんな活動があるか見る",
+    "primaryCtaHref": "/activities",
+    "secondaryCtaLabel": "はじめての人はこちら",
+    "secondaryCtaHref": "/first-time"
+  },
+  "sections": [
+    { "title": "はじめてでも安心", "body": "持ち物も服装も、当日の流れも先にチェック。あとは行くだけ。" },
+    { "title": "森も畑も選べる", "body": "森林作業、農作業、講座、交流イベント。今の気分に合うものを選ぶだけ。" }
+  ],
+  "status": "published"
+}

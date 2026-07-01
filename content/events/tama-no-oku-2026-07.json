@@ -1,0 +1,20 @@
+{
+  "title": "多摩の奥 森林の楽校",
+  "date": "7月26日(日)",
+  "startDate": "2026-07-26",
+
+  "location": "東京都奥多摩町",
+  "category": "森林の楽校",
+  "theme": "森林の楽校",
+  "regionIds": ["kanto-koshinetsu"],
+  "href": "https://blog.canpan.info/juon/archive/960",
+  "statusNote": "2026-05-16確認時点の参加者募集情報。最新の募集状況は募集詳細でチェックしてね。",
+  "status": "published",
+  "image": {
+    "src": "/assets/photos/events/pdf-forest-volunteer-tokyo.png",
+    "alt": "森林ボランティア入門講座で参加者が屋外作業をしている過去活動の様子",
+    "label": "過去活動の様子",
+    "source": "202605.pdf p.8-9 / No.5 里山・森林ボランティア入門講座 in 東京",
+    "safety": "作業風景中心。顔は主題ではない。"
+  }
+}

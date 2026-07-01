@@ -1,0 +1,21 @@
+{
+  "title": "北信りんごの里 田畑の楽校",
+  "date": "6月27日(土)〜28日(日) 桃袋かけ",
+  "startDate": "2026-06-27",
+  "endDate": "2026-06-28",
+
+  "location": "長野県長野市",
+  "category": "田畑の楽校",
+  "theme": "田畑の楽校",
+  "regionIds": ["kanto-koshinetsu"],
+  "href": "https://blog.canpan.info/juon/archive/935",
+  "statusNote": "2026-05-16確認時点の参加者募集情報。最新の募集状況は募集詳細でチェックしてね。",
+  "status": "published",
+  "image": {
+    "src": "/assets/photos/events/pdf-hokushin-ringo.png",
+    "alt": "北信りんごの里 田畑の楽校で参加者が果樹園に立つ過去活動の様子",
+    "label": "過去活動の様子",
+    "source": "202605.pdf p.8-9 / No.7 北信りんごの里 田畑の楽校",
+    "safety": "集合写真だが顔は小さめ。公開前に最終確認対象。"
+  }
+}

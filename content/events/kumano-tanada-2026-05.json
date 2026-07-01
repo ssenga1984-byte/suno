@@ -1,0 +1,21 @@
+{
+  "title": "熊野の棚田 田畑の楽校",
+  "date": "5月30日(土)〜31日(日) 田植え",
+  "startDate": "2026-05-30",
+  "endDate": "2026-05-31",
+
+  "location": "和歌山県那智勝浦町",
+  "category": "田畑の楽校",
+  "theme": "田畑の楽校",
+  "regionIds": ["kansai"],
+  "href": "https://blog.canpan.info/juon/archive/943",
+  "statusNote": "2026-05-16確認時点の参加者募集情報。最新の募集状況は募集詳細でチェックしてね。",
+  "status": "published",
+  "image": {
+    "src": "/assets/photos/events/pdf-okutama-potato.png",
+    "alt": "田畑の活動で参加者が収穫物を扱っている過去活動の様子",
+    "label": "過去活動の様子",
+    "source": "202605.pdf p.8-9 / No.6 おくたま治助芋植付け",
+    "safety": "手元作業中心。顔は主題ではない。"
+  }
+}

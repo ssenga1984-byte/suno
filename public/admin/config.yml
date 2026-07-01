@@ -1,0 +1,291 @@
+backend:
+  name: github
+  repo: ssenga1984-byte/suno
+  branch: main
+
+media_folder: "public/assets/cms"
+public_folder: "/assets/cms"
+
+locale: "ja"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+collections:
+  - name: "events"
+    label: "イベント募集"
+    description: "募集中のイベント一覧を管理します"
+    folder: "content/events"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{slug}}"
+    summary: "{{title}} - {{date}} | {{theme}} | {{location}} | {{status}}"
+    thumbnail: "{{fields.image.src}}"
+    sortable_fields: ["startDate", "title"]
+    view_filters:
+      - label: "公開中"
+        field: "status"
+        pattern: "published"
+      - label: "下書き"
+        field: "status"
+        pattern: "draft"
+    view_groups:
+      - label: "月"
+        field: "startDate"
+        pattern: "\\d{4}-\\d{2}"
+    fields:
+      - label: "タイトル"
+        name: "title"
+        widget: "string"
+        required: true
+        hint: "活動名 + 補足。例: 北信りんごの里 田畑の楽校"
+      - label: "表示日程"
+        name: "date"
+        widget: "string"
+        required: true
+        hint: "公開サイトに表示される日程文。例: 7月4日(土)〜5日(日) 桃袋かけ"
+      - label: "開始日"
+        name: "startDate"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: true
+        hint: "カレンダーから選択。一覧のソートと月別グループに使われます"
+      - label: "終了日"
+        name: "endDate"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: false
+        hint: "日帰りの場合は空欄でOK"
+      - label: "場所"
+        name: "location"
+        widget: "string"
+        required: true
+        hint: "都道府県＋市区町村。例: 長野県飯綱町"
+      - label: "テーマ"
+        name: "theme"
+        widget: "select"
+        options: ["森林の楽校", "田畑の楽校", "地域交流", "里山体験", "農作業体験"]
+        required: true
+        hint: "イベントの主テーマ"
+      - label: "カテゴリ"
+        name: "category"
+        widget: "select"
+        options: ["森林の楽校", "田畑の楽校", "地域交流", "里山体験", "農作業体験", "関東甲信越地域ブロック"]
+        required: true
+        hint: "イベントの分類。テーマと異なる場合のみ変更"
+      - label: "地域"
+        name: "regionIds"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "北海道・東北", value: "hokkaido-tohoku" }
+          - { label: "関東甲信越", value: "kanto-koshinetsu" }
+          - { label: "中部北陸", value: "chubu-hokuriku" }
+          - { label: "関西", value: "kansai" }
+          - { label: "中国四国", value: "chugoku-shikoku" }
+          - { label: "九州", value: "kyushu" }
+        required: true
+      - label: "募集詳細URL"
+        name: "href"
+        widget: "string"
+        required: true
+        pattern: ["^https?://", "URLはhttps://で始めてください"]
+        hint: "CANPANブログの該当記事URLを貼り付け"
+      - label: "ステータス備考"
+        name: "statusNote"
+        widget: "string"
+        required: true
+        default: "最新の募集状況は募集詳細でチェックしてね。"
+        hint: "通常は変更不要"
+      - label: "ステータス"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "公開中", value: "published" }
+          - { label: "下書き", value: "draft" }
+        default: "published"
+        required: true
+        hint: "下書き＝公開サイトに表示されない"
+      - label: "写真"
+        name: "image"
+        widget: "object"
+        required: false
+        collapsed: false
+        fields:
+          - label: "画像"
+            name: "src"
+            widget: "image"
+            required: true
+            hint: "推奨: 横800px以上、JPGまたはPNG"
+          - label: "alt テキスト"
+            name: "alt"
+            widget: "string"
+            required: true
+            default: "活動の様子"
+            hint: "写真の内容を一文で。例: 参加者が森林で間伐作業をしている様子"
+          - label: "ラベル"
+            name: "label"
+            widget: "string"
+            default: "過去活動の様子"
+            hint: "通常は変更不要"
+          - label: "出典"
+            name: "source"
+            widget: "string"
+            required: false
+            hint: "わからなければ空欄でOK"
+          - label: "顔出し安全メモ"
+            name: "safety"
+            widget: "string"
+            required: false
+            hint: "わからなければ空欄でOK"
+
+  - name: "config"
+    label: "サイト設定"
+    description: "公式リンクなどサイト全体の設定"
+    files:
+      - label: "公式リンク"
+        name: "links"
+        file: "content/links.json"
+        fields:
+          - { label: "募集一覧", name: "recruitmentList", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "イベント募集一覧ページのURL" }
+          - { label: "お問い合わせ", name: "contact", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "お問い合わせフォームのURL" }
+          - { label: "入会案内", name: "join", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "入会案内ページのURL" }
+          - { label: "はじめての方", name: "firstTime", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "はじめての方向けページのURL" }
+          - { label: "学生の方", name: "students", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "学生向けページのURL" }
+          - { label: "JUONについて", name: "about", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "JUON紹介ページのURL" }
+          - { label: "組織概要", name: "organization", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "組織概要ページのURL" }
+          - { label: "設立経緯", name: "founding", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "設立経緯ページのURL" }
+          - { label: "沿革", name: "history", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "沿革ページのURL" }
+          - { label: "広報誌", name: "publication", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "広報誌ページのURL" }
+          - { label: "イベント一覧", name: "events", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "イベント一覧ページのURL" }
+          - { label: "樹恩割り箸", name: "waribashi", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "樹恩割り箸ページのURL" }
+          - { label: "Instagram", name: "instagram", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "InstagramアカウントのURL" }
+          - { label: "Facebook", name: "facebook", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "FacebookページのURL" }
+          - { label: "X (Twitter)", name: "x", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "X(Twitter)アカウントのURL" }
+          - { label: "YouTube", name: "youtube", widget: "string", required: true, pattern: ["^https?://", "URLはhttps://で始めてください"], hint: "YouTubeチャンネルのURL" }
+
+      - label: "募集一覧メタ情報"
+        name: "recruitment-meta"
+        file: "content/recruitment-meta.json"
+        fields:
+          - { label: "確認日", name: "checkedAt", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: true, hint: "募集情報を最後に確認した日付" }
+          - { label: "公式一覧URL", name: "officialListUrl", widget: "string", required: true, hint: "JUON公式の募集一覧ページURL" }
+          - { label: "注記", name: "note", widget: "text", required: true, hint: "募集一覧に表示する注記文" }
+
+  - name: "pages"
+    label: "固定ページ"
+    description: "主要ページの見出し・リード・CTAを管理します"
+    files:
+      - label: "トップページ"
+        name: "home"
+        file: "content/pages/home.json"
+        fields:
+          - { label: "ページタイトル", name: "title", widget: "string", required: true }
+          - { label: "メタタイトル", name: "metaTitle", widget: "string", required: true, hint: "ブラウザのタブに表示されるタイトル" }
+          - { label: "メタ説明", name: "metaDescription", widget: "text", required: true, hint: "検索結果に表示される説明文（120文字程度）" }
+          - label: "バナー"
+            name: "banner"
+            widget: "object"
+            hint: "トップページ最上部のメインビジュアル領域"
+            fields:
+              - { label: "アイキャッチ", name: "eyebrow", widget: "string", hint: "バナー上部の小さな文字" }
+              - { label: "見出し", name: "title", widget: "text", hint: "バナーのメイン見出し" }
+              - { label: "リード文", name: "lead", widget: "text", hint: "見出し下の説明文" }
+              - { label: "主CTA ラベル", name: "primaryCtaLabel", widget: "string", hint: "メインボタンのテキスト" }
+              - { label: "主CTA リンク", name: "primaryCtaHref", widget: "string", hint: "メインボタンのリンク先（例: #activities）" }
+              - { label: "副CTA ラベル", name: "secondaryCtaLabel", widget: "string", required: false, hint: "サブボタンのテキスト（省略可）" }
+              - { label: "副CTA リンク", name: "secondaryCtaHref", widget: "string", required: false, hint: "サブボタンのリンク先（省略可）" }
+          - label: "セクション"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "見出し", name: "title", widget: "string" }
+              - { label: "本文", name: "body", widget: "text" }
+          - { label: "ステータス", name: "status", widget: "select", options: ["published", "draft"], default: "published" }
+
+      - label: "はじめての方へ"
+        name: "first-time"
+        file: "content/pages/first-time.json"
+        fields:
+          - { label: "ページタイトル", name: "title", widget: "string", required: true }
+          - { label: "メタタイトル", name: "metaTitle", widget: "string", required: true, hint: "ブラウザのタブに表示されるタイトル" }
+          - { label: "メタ説明", name: "metaDescription", widget: "text", required: true, hint: "検索結果に表示される説明文（120文字程度）" }
+          - label: "バナー"
+            name: "banner"
+            widget: "object"
+            hint: "ページ最上部のヘッダー領域"
+            fields:
+              - { label: "アイキャッチ", name: "eyebrow", widget: "string" }
+              - { label: "見出し", name: "title", widget: "text" }
+              - { label: "リード文", name: "lead", widget: "text" }
+              - { label: "主CTA ラベル", name: "primaryCtaLabel", widget: "string" }
+              - { label: "主CTA リンク", name: "primaryCtaHref", widget: "string" }
+              - { label: "副CTA ラベル", name: "secondaryCtaLabel", widget: "string", required: false }
+              - { label: "副CTA リンク", name: "secondaryCtaHref", widget: "string", required: false }
+          - label: "セクション"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "見出し", name: "title", widget: "string" }
+              - { label: "本文", name: "body", widget: "text" }
+          - { label: "ステータス", name: "status", widget: "select", options: ["published", "draft"], default: "published" }
+
+      - label: "活動一覧"
+        name: "activities"
+        file: "content/pages/activities.json"
+        fields:
+          - { label: "ページタイトル", name: "title", widget: "string", required: true }
+          - { label: "メタタイトル", name: "metaTitle", widget: "string", required: true, hint: "ブラウザのタブに表示されるタイトル" }
+          - { label: "メタ説明", name: "metaDescription", widget: "text", required: true, hint: "検索結果に表示される説明文（120文字程度）" }
+          - label: "バナー"
+            name: "banner"
+            widget: "object"
+            hint: "ページ最上部のヘッダー領域"
+            fields:
+              - { label: "アイキャッチ", name: "eyebrow", widget: "string" }
+              - { label: "見出し", name: "title", widget: "text" }
+              - { label: "リード文", name: "lead", widget: "text" }
+              - { label: "主CTA ラベル", name: "primaryCtaLabel", widget: "string" }
+              - { label: "主CTA リンク", name: "primaryCtaHref", widget: "string" }
+              - { label: "副CTA ラベル", name: "secondaryCtaLabel", widget: "string", required: false }
+              - { label: "副CTA リンク", name: "secondaryCtaHref", widget: "string", required: false }
+          - label: "セクション"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "見出し", name: "title", widget: "string" }
+              - { label: "本文", name: "body", widget: "text" }
+          - { label: "ステータス", name: "status", widget: "select", options: ["published", "draft"], default: "published" }
+
+      - label: "イベント日程"
+        name: "events"
+        file: "content/pages/events.json"
+        fields:
+          - { label: "ページタイトル", name: "title", widget: "string", required: true }
+          - { label: "メタタイトル", name: "metaTitle", widget: "string", required: true, hint: "ブラウザのタブに表示されるタイトル" }
+          - { label: "メタ説明", name: "metaDescription", widget: "text", required: true, hint: "検索結果に表示される説明文（120文字程度）" }
+          - label: "バナー"
+            name: "banner"
+            widget: "object"
+            hint: "ページ最上部のヘッダー領域"
+            fields:
+              - { label: "アイキャッチ", name: "eyebrow", widget: "string" }
+              - { label: "見出し", name: "title", widget: "text" }
+              - { label: "リード文", name: "lead", widget: "text" }
+              - { label: "主CTA ラベル", name: "primaryCtaLabel", widget: "string" }
+              - { label: "主CTA リンク", name: "primaryCtaHref", widget: "string" }
+              - { label: "副CTA ラベル", name: "secondaryCtaLabel", widget: "string", required: false }
+              - { label: "副CTA リンク", name: "secondaryCtaHref", widget: "string", required: false }
+          - label: "セクション"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "見出し", name: "title", widget: "string" }
+              - { label: "本文", name: "body", widget: "text" }
+          - { label: "ステータス", name: "status", widget: "select", options: ["published", "draft"], default: "published" }

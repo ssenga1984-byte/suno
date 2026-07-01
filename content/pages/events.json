@@ -1,0 +1,20 @@
+{
+  "title": "週末から参加できる日程",
+  "metaTitle": "週末から参加できる日程 | JUON NETWORK",
+  "metaDescription": "直近で参加できるボランティア、講座、地域イベントの日程をチェックしよう。",
+  "banner": {
+    "eyebrow": "イベント日程",
+    "title": "次の週末、予定あいてる？",
+    "lead": "日程、地域、やりたいことから、今の自分に合うイベントを見つけよう。",
+    "primaryCtaLabel": "募集中のイベントを見る",
+    "primaryCtaHref": "/events",
+    "secondaryCtaLabel": "公式の募集一覧を見る",
+    "secondaryCtaHref": "https://juon.or.jp/news/cate_list.php?a=cate_list&news_cate_id=36"
+  },
+  "sections": [
+    { "title": "日程から探す", "body": "週末、連休、平日開催。自分の予定に合うイベントを見つけよう。" },
+    { "title": "地域から探す", "body": "近場で日帰りも、宿泊して入る活動もある。比べて選べる。" },
+    { "title": "テーマから選ぶ", "body": "森、田畑、講座、地域交流。気持ちが動くものからでOK。" }
+  ],
+  "status": "published"
+}

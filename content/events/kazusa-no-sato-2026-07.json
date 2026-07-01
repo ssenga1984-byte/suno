@@ -1,0 +1,22 @@
+{
+  "statusNote": "2026-05-16確認時点の参加者募集情報。最新の募集状況は募集詳細でチェックしてね。",
+  "regionIds": [
+    "kanto-koshinetsu"
+  ],
+  "theme": "森林の楽校",
+  "href": "https://blog.canpan.info/juon/archive/953",
+  "date": "7月4日(土)",
+  "startDate": "2026-07-04",
+  "status": "published",
+
+  "location": "千葉県長生郡睦沢町",
+  "title": "かずさの里 森林の楽校（睦沢）",
+  "image": {
+    "src": "/assets/cms/line_album_250524c3a6c2a3c2aec3a6c29ec297c3a3c281c2aec3a6c2a5c2bdc3a6c2a0c2a1_250527_14.jpg",
+    "alt": "森林ボランティア入門講座で参加者が屋外作業をしている過去活動の様子",
+    "label": "過去活動の様子",
+    "source": "202605.pdf p.8-9 / No.5 里山・森林ボランティア入門講座 in 東京",
+    "safety": "作業風景中心。顔は主題ではない。"
+  },
+  "category": "森林の楽校"
+}

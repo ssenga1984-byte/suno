@@ -1,0 +1,20 @@
+{
+  "title": "気になる活動を探す",
+  "metaTitle": "気になる活動を探す | JUON NETWORK",
+  "metaDescription": "森づくり、農作業、地域交流。やりたいことや場所から、自分に合う活動を探せます。",
+  "banner": {
+    "eyebrow": "活動を探す",
+    "title": "君にも合う活動、きっとある",
+    "lead": "週末だけの参加、地域に通う活動、日常から森を支える取り組み。\n今の自分に近い関わり方をここで探して。",
+    "primaryCtaLabel": "イベント日程を見る",
+    "primaryCtaHref": "/events",
+    "secondaryCtaLabel": "公式の募集一覧を見る",
+    "secondaryCtaHref": "https://juon.or.jp/news/cate_list.php?a=cate_list&news_cate_id=36"
+  },
+  "sections": [
+    { "title": "森林の楽校", "body": "間伐、枝打ち、道づくり。森の現場に入って、手を動かす体験。" },
+    { "title": "田畑の楽校", "body": "田植え、草取り、収穫。食べものの裏側を地域で体験する。" },
+    { "title": "地域ブロック", "body": "同じ地域に通いながら、人や土地とのつながりをちょっとずつ育てる。" }
+  ],
+  "status": "published"
+}

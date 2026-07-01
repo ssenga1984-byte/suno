@@ -1,0 +1,33 @@
+{
+  "name": "juon-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "cms": "npx decap-server",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "check:security:static": "node scripts/static-security-check.mjs",
+    "check:e2e": "playwright test",
+    "check:site": "npm run build && npm audit --omit=dev && npm run check:security:static && npm run check:e2e"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.4.1",
+    "framer-motion": "^12.10.5",
+    "lucide-react": "^0.511.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "autoprefixer": "^10.4.21",
+    "decap-server": "^3.9.1",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
+  }
+}

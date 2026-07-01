@@ -1,0 +1,21 @@
+{
+  "title": "水源の森 自然ふれあい楽習",
+  "date": "8月29日(土)〜30日(日)",
+  "startDate": "2026-08-29",
+  "endDate": "2026-08-30",
+
+  "location": "群馬県利根郡みなかみ町藤原、三菱UFJ環境財団「水源の森」ほか",
+  "category": "森林の楽校",
+  "theme": "森林の楽校",
+  "regionIds": ["kanto-koshinetsu"],
+  "href": "https://blog.canpan.info/juon/archive/952",
+  "statusNote": "2026-05-16確認時点の参加者募集情報。最新の募集状況は募集詳細でチェックしてね。",
+  "status": "published",
+  "image": {
+    "src": "/assets/photos/events/pdf-kazenotani-forest.png",
+    "alt": "風の谷 森林の楽校で参加者が森の中で作業している過去活動の様子",
+    "label": "過去活動の様子",
+    "source": "202605.pdf p.8-9 / No.9 風の谷 森林の楽校",
+    "safety": "遠景中心。顔は主題ではない。"
+  }
+}

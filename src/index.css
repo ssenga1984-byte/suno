@@ -1,0 +1,412 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --header-h: 4rem;
+  --scroll-offset: calc(var(--header-h) + 1rem);
+  color: theme("colors.forest.ink");
+  background: theme("colors.forest.linen");
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--scroll-offset);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(180deg, rgb(246 243 234 / 0.86), rgb(251 250 245 / 1)),
+    theme("colors.forest.linen");
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main p a,
+main li a {
+  text-decoration: underline;
+  text-decoration-color: theme("colors.ui.accent.DEFAULT");
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.24em;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+a,
+span,
+strong {
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
+@supports (text-wrap: balance) {
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  color: theme("colors.forest.deep");
+  background: theme("colors.forest.moss");
+}
+
+.focus-ring {
+  @apply outline-none ring-2 ring-forest-moss ring-offset-2 ring-offset-forest-linen;
+}
+
+.banner-title {
+  overflow-wrap: anywhere;
+  line-break: strict;
+  word-break: break-all;
+}
+
+.jp-wrap {
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
+@keyframes page-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheet-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes about-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes support-soft-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes consult-copy-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes consult-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes consult-step-glide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes consult-panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.activity-card-reveal,
+.activity-hero-copy,
+.activity-info-card {
+  animation: sheet-rise 520ms ease both;
+}
+
+.activity-info-card:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.activity-info-card:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.about-motion-surface {
+  animation: about-rise 360ms ease both;
+}
+
+.about-hover-card {
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.about-hover-card:hover {
+  transform: translateY(-3px);
+  border-color: rgb(79 125 90 / 0.45);
+}
+
+.support-hero-copy {
+  animation: support-soft-rise 560ms ease both;
+}
+
+.support-reveal {
+  animation: support-soft-rise 480ms ease both;
+}
+
+.support-reveal:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.support-reveal:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.support-reveal:nth-child(4) {
+  animation-delay: 210ms;
+}
+
+.support-reveal:nth-child(5) {
+  animation-delay: 280ms;
+}
+
+.support-card-hover {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.support-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgb(79 125 90 / 0.42);
+  box-shadow: 0 14px 32px rgb(30 64 49 / 0.1);
+}
+
+.support-cta-surface {
+  background:
+    linear-gradient(135deg, rgb(255 255 250 / 0.92), rgb(246 243 234 / 0.9)),
+    theme("colors.forest.linen");
+  border-color: rgb(79 125 90 / 0.2);
+  box-shadow: 0 18px 44px rgb(30 64 49 / 0.08);
+}
+
+.consult-hero-copy {
+  animation: consult-copy-reveal 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.consult-reveal {
+  animation: consult-card-rise 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.consult-reveal:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.consult-reveal:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.consult-reveal:nth-child(4) {
+  animation-delay: 210ms;
+}
+
+.consult-reveal:nth-child(5) {
+  animation-delay: 280ms;
+}
+
+.consult-reveal:nth-child(6) {
+  animation-delay: 350ms;
+}
+
+.consult-step-glide {
+  animation: consult-step-glide 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.consult-panel-enter {
+  animation: consult-panel-enter 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.consult-step-glide:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.consult-step-glide:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.consult-card-hover {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.consult-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgb(79 125 90 / 0.42);
+  box-shadow: 0 16px 34px rgb(30 64 49 / 0.1);
+}
+
+.consult-cta-hover {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.consult-cta-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgb(30 64 49 / 0.12);
+}
+
+/* Scroll reveal: sections rise up from below as they enter the viewport.
+   Progressive enhancement: hidden state applies only after JS adds
+   `reveal-enabled` to <html>, so content stays visible without JS or
+   under prefers-reduced-motion. */
+.reveal-enabled [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-enabled [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .about-hover-card:hover {
+    transform: none;
+  }
+
+  .support-hero-copy,
+  .support-reveal {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .support-card-hover,
+  .support-card-hover:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .consult-hero-copy,
+  .consult-reveal,
+  .consult-step-glide,
+  .consult-panel-enter {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .consult-card-hover,
+  .consult-card-hover:hover,
+  .consult-cta-hover,
+  .consult-cta-hover:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .reveal-enabled [data-reveal],
+  .reveal-enabled [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+}

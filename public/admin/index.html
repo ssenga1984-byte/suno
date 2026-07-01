@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>JUON サイト管理画面</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    var EventPreview = createClass({
+      render: function () {
+        var entry = this.props.entry;
+        var title = entry.getIn(["data", "title"]) || "";
+        var date = entry.getIn(["data", "date"]) || "";
+        var location = entry.getIn(["data", "location"]) || "";
+        var theme = entry.getIn(["data", "theme"]) || "";
+        var category = entry.getIn(["data", "category"]) || "";
+        var status = entry.getIn(["data", "status"]) || "published";
+        var imageSrc = entry.getIn(["data", "image", "src"]) || "";
+        var imageAlt = entry.getIn(["data", "image", "alt"]) || "活動の様子";
+        var href = entry.getIn(["data", "href"]) || "";
+
+        var getAsset = this.props.getAsset;
+        var resolvedSrc = imageSrc ? getAsset(imageSrc).toString() : "";
+
+        var cardStyle = {
+          fontFamily: "'Hiragino Sans', 'Noto Sans JP', sans-serif",
+          maxWidth: "400px",
+          margin: "20px auto",
+          borderRadius: "12px",
+          overflow: "hidden",
+          boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
+          background: "#fff",
+        };
+
+        var imgContainerStyle = {
+          width: "100%",
+          height: "200px",
+          background: "#e8e8e8",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+          position: "relative",
+        };
+
+        var imgStyle = {
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        };
+
+        var placeholderStyle = {
+          color: "#999",
+          fontSize: "14px",
+        };
+
+        var bodyStyle = {
+          padding: "16px",
+        };
+
+        var badgeContainerStyle = {
+          display: "flex",
+          gap: "6px",
+          marginBottom: "8px",
+          flexWrap: "wrap",
+        };
+
+        var themeBadgeStyle = {
+          display: "inline-block",
+          padding: "2px 10px",
+          borderRadius: "12px",
+          fontSize: "12px",
+          fontWeight: "600",
+          background: "#e6f4e6",
+          color: "#2d6a2e",
+        };
+
+        var categoryBadgeStyle = {
+          display: "inline-block",
+          padding: "2px 10px",
+          borderRadius: "12px",
+          fontSize: "12px",
+          fontWeight: "600",
+          background: "#f0e6d6",
+          color: "#7a5c2e",
+        };
+
+        var draftBadgeStyle = {
+          display: "inline-block",
+          padding: "2px 10px",
+          borderRadius: "12px",
+          fontSize: "12px",
+          fontWeight: "600",
+          background: "#fde8e8",
+          color: "#c53030",
+        };
+
+        var titleStyle = {
+          fontSize: "18px",
+          fontWeight: "700",
+          color: "#1a3a1a",
+          margin: "0 0 8px 0",
+          lineHeight: "1.4",
+        };
+
+        var metaStyle = {
+          fontSize: "14px",
+          color: "#666",
+          margin: "4px 0",
+          lineHeight: "1.5",
+        };
+
+        var linkStyle = {
+          display: "block",
+          marginTop: "12px",
+          padding: "8px 16px",
+          background: "#2d6a2e",
+          color: "#fff",
+          borderRadius: "8px",
+          textAlign: "center",
+          textDecoration: "none",
+          fontSize: "14px",
+          fontWeight: "600",
+        };
+
+        var headerStyle = {
+          textAlign: "center",
+          padding: "12px",
+          fontSize: "13px",
+          color: "#888",
+          borderBottom: "1px solid #eee",
+        };
+
+        return h("div", { style: { padding: "16px", background: "#f5f5f5", minHeight: "100%" } },
+          h("div", { style: headerStyle }, "公開サイトでの見え方（イメージ）"),
+          h("div", { style: cardStyle },
+            h("div", { style: imgContainerStyle },
+              resolvedSrc
+                ? h("img", { src: resolvedSrc, alt: imageAlt, style: imgStyle })
+                : h("span", { style: placeholderStyle }, "写真未設定")
+            ),
+            h("div", { style: bodyStyle },
+              h("div", { style: badgeContainerStyle },
+                theme ? h("span", { style: themeBadgeStyle }, theme) : null,
+                category && category !== theme ? h("span", { style: categoryBadgeStyle }, category) : null,
+                status === "draft" ? h("span", { style: draftBadgeStyle }, "下書き") : null
+              ),
+              h("h2", { style: titleStyle }, title || "（タイトル未入力）"),
+              h("p", { style: metaStyle }, date || "（日程未入力）"),
+              h("p", { style: metaStyle }, location || "（場所未入力）"),
+              href
+                ? h("a", { href: href, target: "_blank", rel: "noopener", style: linkStyle }, "募集詳細を見る")
+                : h("span", { style: Object.assign({}, linkStyle, { background: "#ccc" }) }, "URL未設定")
+            )
+          )
+        );
+      },
+    });
+
+    CMS.registerPreviewTemplate("events", EventPreview);
+  </script>
+</body>
+</html>

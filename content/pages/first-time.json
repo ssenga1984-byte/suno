@@ -1,0 +1,20 @@
+{
+  "title": "はじめての方へ",
+  "metaTitle": "はじめての方へ | JUON NETWORK",
+  "metaDescription": "はじめてでも大丈夫。服装、持ち物、当日の流れを先にチェックして、安心して参加しよう。",
+  "banner": {
+    "eyebrow": "はじめての人へ",
+    "title": "はじめてでも、全然大丈夫。",
+    "lead": "服装、持ち物、当日の流れ。ここで先に確認したら、あとは行くだけ。",
+    "primaryCtaLabel": "参加できる日程を見る",
+    "primaryCtaHref": "/events",
+    "secondaryCtaLabel": "気軽に聞いてみる",
+    "secondaryCtaHref": "/contact"
+  },
+  "sections": [
+    { "title": "不安は先につぶす", "body": "体力の目安、集合場所、雨の日の対応、道具のこと。行く前に全部チェックできる。" },
+    { "title": "自分のペースで選ぶ", "body": "日帰り体験から講座、地域活動まで。無理なく始められるかたちがある。" },
+    { "title": "一人でも、友だちとでも", "body": "現地で迷わないように、当日の流れを先に紹介。安心して出発できる。" }
+  ],
+  "status": "published"
+}
